@@ -21,12 +21,6 @@
                             <hr class="dropdown-divider" />
                         </li>
 
-                        <!-- <li><a class="dropdown-item" href="{% url 'category' 'Laptops' %}">Laptops</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Android Phones' %}">Android Phones</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Accessories' %}">Accessories</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'Iphones' %}">Iphones</a> -->
-
-
                             {% for category in categories %}
                             <li><a class="dropdown-item" href="/category/{{ category.name }}">{{ category.name }}</a></li>
                             {% endfor %}
