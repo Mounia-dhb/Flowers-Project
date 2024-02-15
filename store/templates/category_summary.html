@@ -2,11 +2,11 @@
 {% block content %}
 
 <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="py-5 bg-secondary">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
+                <div class="text-center text-black">
                     <h1 class="display-4 fw-bolder">Categories</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Choose Your Category Below...</p>
+                    <p class="lead fw-normal text-black-50 mb-0">Choose Your Category Below...</p>
                 </div>
             </div>
         </header>
@@ -14,11 +14,11 @@
         <div class="container">
         	<div class="row">
         		<center>
-        			<div class="col-8">
+        			<div class="col-8"  >
         				<br/><br/>
                         
                         {% for category in categories %}
-<h3><a href="{% url 'category' category %}">{{ category }}</a></h3>
+                        <h3 style="font-size: 30px; font-weight: bold;"><a href="{% url 'category' category %}">{{ category }}</a></h3>
 
                         {% endfor %}
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

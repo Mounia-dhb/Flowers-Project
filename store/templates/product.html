@@ -53,8 +53,8 @@
                 </div>
             </div>
             <br/><br/>
-        <a href="{% url 'home'%}" class="btn btn-secondary">Back to Shopping</a>
-        <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Add To Cart</button>
+        <a href="{% url 'home'%}" class="btn btn-secondary" style="background-color: #007bff;">Back to Shopping</a>
+        <button type="button" value="{{ product.id }}" class="btn btn-secondary" style="background-color: #007bff;" id="add-cart">Add To Cart</button>
 
     </center>
       </div>
@@ -72,7 +72,7 @@ $(document).on('click', '#add-cart', function(e){
     e.preventDefault();
     $.ajax({
         type: 'POST',
-        url: '{% url 'cart_add' %}',
+        url: '{% url 'cart_add' %} ,
         data: {
     product_id: $('#add-cart').val(),
     product_qty: $('#qty-cart option:selected').text(),
