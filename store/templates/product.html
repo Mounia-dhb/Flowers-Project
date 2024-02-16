@@ -17,7 +17,7 @@
         <center>
         <h5 class="card-title">{{ product.name }}</h5>
         <br/>
-        <p class="card-text justified">{{ product.description }}</p>
+        <p  class="card-text justified"  >{{ product.description|linebreaks }}</p>
         
         {% if product.is_sale %}
         <div class="d-flex justify-content-center small text-warning mb-2">
