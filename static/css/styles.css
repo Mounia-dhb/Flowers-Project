@@ -8059,9 +8059,10 @@ textarea.form-control-lg {
   color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
 }
 
-.text-danger {
+.text-warning {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+  --bs-warning-rgb: 255, 0, 0; 
+  color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-light {
