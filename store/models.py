@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django_countries.fields import CountryField
 
 
 # Create Customer Profile
@@ -86,3 +87,14 @@ class Order(models.Model):
 
 	def __str__(self):
 		return self.product
+
+# Customer Address
+class CheckoutAddress(models.Model):
+    customer =  models.ForeignKey(Customer, on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=100)
+    apartment_address = models.CharField(max_length=100)
+    country = CountryField(multiple=False)
+    zip = models.CharField(max_length=100)
+
+    def __str__(self):
+       return f'{self.customer.first_name} {self.customer.last_name}'

@@ -1,9 +1,13 @@
 from pathlib import Path
 import os
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+CountrySelectWidget.get_choices = lambda self: self._choices
+CountrySelectWidget.choices = property(CountrySelectWidget.get_choices, CountrySelectWidget.set_choices)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,6 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store',
     'cart',
+    'checkout',
+    'django_countries',
 ]
 
 MIDDLEWARE = [

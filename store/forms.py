@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django import forms
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 from .models import Profile
 
 
@@ -95,3 +97,47 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
 		self.fields['password2'].label = ''
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+
+
+
+PAYMENT = (
+    ('S', 'Stripe'),
+    ('P', 'PayPal')
+)
+
+class CheckoutForm(forms.Form):
+    customer_firstname = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Your firstname'
+    }))
+    customer_lastname = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Your lastname'
+    }))
+    street_address = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': '1234 Main St'
+    }))
+    apartment_address = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Apartment or suite'
+    }))
+    country = CountryField(blank_label='(select country)').formfield(widget=CountrySelectWidget(attrs={
+        'class': 'form-control custom-select d-block w-100'
+    }))
+    zip = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control'
+    }))
+    customer_phone = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': '+212xxxxxxxxx'
+    }))
+    customer_email = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'example@examole.com'
+    }))
+    same_billing_address = forms.BooleanField(required=False)
+    save_info = forms.BooleanField(required=False)
+    payment_option = forms.ChoiceField(
+        widget=forms.RadioSelect, choices=PAYMENT)
+	
