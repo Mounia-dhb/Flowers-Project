@@ -9,47 +9,43 @@
     <title>Swiper demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="style.css">
-  
+
     <style>
-   
-  
-     
-  
-      swiper-container {
-        width: 100%;
-        height: 100%;
-      }
-  
-      swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-  
-      swiper-slide img {
-        display: block;
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-      }
+        swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
     </style>
-  </head>
+</head>
 <!-- Header-->
-<header >
+<header>
     <div style="position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); z-index: 100;">
-    <h1 style="color: rgb(0, 0, 0); display: inline-block;">Tech for Every Lifestyle !</h1>
-</div>
+        <h1 style="color: rgb(0, 0, 0); display: inline-block;">Tech for Every Lifestyle !</h1>
+    </div>
 
 
     <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
         space-between="30" centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
         <swiper-slide><img src="{% static './assets/home1.jpg'%}" /></swiper-slide>
-        <swiper-slide><img src="{% static './assets/home5.jpg'%}"  /></swiper-slide>
-        <swiper-slide><img src="{% static './assets/home3.jpg'%}"  /></swiper-slide>
-        <swiper-slide><img src="{% static './assets/home4.jpg'%}"  /></swiper-slide>
+        <swiper-slide><img src="{% static './assets/home5.jpg'%}" /></swiper-slide>
+        <swiper-slide><img src="{% static './assets/home3.jpg'%}" /></swiper-slide>
+        <swiper-slide><img src="{% static './assets/home4.jpg'%}" /></swiper-slide>
 
 
     </swiper-container>
@@ -76,66 +72,78 @@
             {% for product in products %}
             {% if product.is_sale %}
 
+
             <div class="col mb-5">
                 <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div>
+                    <a href="{% url 'product' product.id  %}" style="text-decoration: none;">
+                        <!-- Sale badge-->
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                        </div>
 
-                    <!-- Product image-->
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">{{ product.name }}</h5>
-                            <!-- Sale -->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                &nbsp;&nbsp;Sale!&nbsp;&nbsp;
-                                <div class="bi-star-fill"></div>
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ product.name }}</h5>
+                                <!-- Sale -->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    &nbsp;&nbsp;Sale!&nbsp;&nbsp;
+                                    <div class="bi-star-fill"></div>
+                                </div>
+
+                                <!-- Product price-->
+                                <strike>
+                                    ${{ product.price }}
+                                </strike>
+                                &nbsp;
+                                ${{ product.sale_price }}
                             </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <!-- <a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id  %}">Add to Cart</a> -->
+                                <button value="{{ product.id }}" class="btn btn-outline-dark mt-auto add-cart-btn">Add To Cart</button>
 
-                            <!-- Product price-->
-                            <strike>
-                                ${{ product.price }}
-                            </strike>
-                            &nbsp;
-                            ${{ product.sale_price }}
+                            </div>
                         </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center">
-                            <a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id  %}">View
-                                Product</a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
+
 
 
             {% else %}
+
             <div class="col mb-5">
                 <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">{{ product.name }}</h5>
-                            <!-- Product price-->
-                            ${{ product.price }}
+                    <a href="{% url 'product' product.id %}" style="text-decoration: none;">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ product.name }}</h5>
+                                <!-- Product price-->
+                                ${{ product.price }}
+                            </div>
                         </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                href="{% url 'product' product.id %}">View Product</a></div>
-                    </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <!-- <a href="{% url 'product' product.id %}" class="btn btn-outline-dark mt-auto">Add to Cart</a> -->
+                                <button value="{{ product.id }}" class="btn btn-outline-dark mt-auto add-cart-btn">Add To Cart</button>
+
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
+
 
             {% endif %}
             {% endfor %}
@@ -144,6 +152,35 @@
         </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+<script>
+
+
+    $(document).on('click', '.add-cart-btn', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_add' %}",
+            data: {
+                product_id: $(this).val(),// Get the product ID from the clicked button,
+                product_qty: 1,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+            success: function (json) {
+                document.getElementById("cart_quantity").textContent = json.qty;
+                location.reload();
+            },
+            error: function (xhr, errmsg, err) {
+                // Handle errors
+            }
+        });
+    });
+
+
+
+</script>
+
 
 
 {% endblock %}
