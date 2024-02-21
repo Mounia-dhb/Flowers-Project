@@ -153,7 +153,7 @@
 </section>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 
-{% endblock %}
+
 
 
 <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
@@ -163,23 +163,23 @@
     paypal.Buttons({
 
         // Call your server to set up the transaction
-        createOrder: function(data, actions) {
+        createOrder: function (data, actions) {
             return fetch('/demo/checkout/api/paypal/order/create/', {
                 method: 'post'
-            }).then(function(res) {
+            }).then(function (res) {
                 return res.json();
-            }).then(function(orderData) {
+            }).then(function (orderData) {
                 return orderData.id;
             });
         },
 
         // Call your server to finalize the transaction
-        onApprove: function(data, actions) {
+        onApprove: function (data, actions) {
             return fetch('/demo/checkout/api/paypal/order/' + data.orderID + '/capture/', {
                 method: 'post'
-            }).then(function(res) {
+            }).then(function (res) {
                 return res.json();
-            }).then(function(orderData) {
+            }).then(function (orderData) {
                 // Three cases to handle:
                 //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
                 //   (2) Other non-recoverable errors -> Show a failure message
@@ -204,7 +204,7 @@
                 // Successful capture! For demo purposes:
                 console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                 var transaction = orderData.purchase_units[0].payments.captures[0];
-                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                alert('Transaction ' + transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
 
                 // Replace the above to show a success message within this page, e.g.
                 // const element = document.getElementById('paypal-button-container');
@@ -215,7 +215,6 @@
         }
 
     }).render('#paypal-button-container');
-<script>
 
 
     $(document).on('click', '.add-cart-btn', function (e) {
@@ -242,6 +241,4 @@
 
 
 </script>
-
-
-
+{% endblock %}
