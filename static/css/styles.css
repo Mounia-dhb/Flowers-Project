@@ -246,11 +246,11 @@ sup {
 }
 
 a {
-  color: var(--bs-link-color);
+  color: #000;
   text-decoration: underline;
 }
 a:hover {
-  color: var(--bs-link-hover-color);
+  color:#0d6efd;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -4693,9 +4693,9 @@ textarea.form-control-lg {
 }
 
 .alert-warning {
-  --bs-alert-color: #664d03;
-  --bs-alert-bg: #fff3cd;
-  --bs-alert-border-color: #ffecb5;
+  --bs-alert-color: #000000;
+  --bs-alert-bg: #c7c7c7;
+  --bs-alert-border-color: #000000;
 }
 .alert-warning .alert-link {
   color: #523e02;
