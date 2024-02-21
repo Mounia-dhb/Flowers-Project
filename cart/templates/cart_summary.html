@@ -102,8 +102,7 @@
 $(document).on('click', '.update-cart', function(e){
     e.preventDefault();
     // grab the product id
-    var productid = $(this).data('index');
-
+    var productid = $(this).data('index'); 
     $.ajax({
     type: 'POST',
     url: "{% url 'cart_update' %}",
@@ -136,7 +135,11 @@ $(document).on('click', '.delete-product', function(e){
 
     $.ajax({
     type: 'POST',
+<<<<<<< HEAD
+    url: '{% url "cart_delete" %}',
+=======
     url: "{% url 'cart_delete' %}",
+>>>>>>> 4cf6fcdec71498031b4427729a616abedfd57f71
     data: {
       product_id: $(this).data('index'),
       csrfmiddlewaretoken: '{{ csrf_token }}',
