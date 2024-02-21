@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'django_countries',
+
+    # PayPal Integration
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [

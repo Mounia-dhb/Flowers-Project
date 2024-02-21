@@ -18,7 +18,7 @@
           <!--Card-->
           <div class="card">
             <!--Card content-->
-            <form method="POST" class="card-body" action="">
+            <form method="POST" class="card-body" action="{% url 'create_payment' %}">
             {% csrf_token %}
               <!--first- and lastname-->
               <div class="row mb-5">
@@ -102,10 +102,10 @@
       
               </div>
              
-
+              <input type="hidden" value="{{totals}}" name="total_cmd">
               <button class="btn btn-secondary" style="background-color: #007bff; float: right;" type="submit">Continue to Payment</button>
               <a href="{% url 'cart_summary' %}"class="btn btn-secondary" style="background-color: #007bff; float: left;">Go Back</a> 
-
+            
             </form>
 
           </div>
