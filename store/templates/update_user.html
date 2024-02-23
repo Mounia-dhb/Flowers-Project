@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
 {% block content %}
 
 <!DOCTYPE html>
@@ -63,7 +64,7 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <button type="submit" class="btn btn-secondary" style="background-color: #007bff;" >
+                                    <button type="submit" class="btn btn-secondary" style="background-color: #007bff;">
                                         Update Profile
                                     </button>
                                 </form>
@@ -84,7 +85,7 @@
                                             <input type="password" name="old_password" id="id_old_password"
                                                 class="form-control" required>
                                         </div>
-                                        
+
                                     </div>
 
                                     <div class="row">
@@ -94,7 +95,7 @@
                                                 class="form-control" required>
                                         </div>
 
-                                        
+
                                     </div>
 
                                     <div class="row">
@@ -103,13 +104,13 @@
                                             <input type="password" name="new_password2" id="id_new_password2"
                                                 class="form-control" required>
                                         </div>
-                                        
+
                                     </div>
 
 
 
                                     <br /><br />
-                                    <button type="submit" class="btn btn-secondary"  style="background-color: #007bff;" >
+                                    <button type="submit" class="btn btn-secondary" style="background-color: #007bff;">
                                         Update Password
                                     </button>
                                 </form>
@@ -121,64 +122,70 @@
                             <!-- My shipping section -->
                             <div class="card-body pb-2">
                                 <h6 class="mb-4">Update your Shipping information :</h6>
-                                <form method="POST" action="{% url 'update_info' %}">
+                                <form method="POST" class="card-body" action="{% url 'update_info' %}">
                                     {% csrf_token %}
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="{{ form.phone.id_for_label }}">Phone:</label>
-                                            {{ form.phone }}
-                                        </div>
+                                  
+                                    <!--address-->
+                                    <div class="md-form mb-5">
+                                      <label for="address" class="">Address</label>
+                                      {{ form.address1 }}
                                     </div>
-
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="{{ form.address1.id_for_label }}">Address 1:</label>
-                                            {{ form.address1 }}
-                                        </div>
+                                  
+                                    <!--address-2-->
+                                    <div class="md-form mb-5">
+                                      <label for="address-2" class="">Address 2 (optional)</label>
+                                      {{ form.address2 }}
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="{{ form.address2.id_for_label }}">Address 2:</label>
-                                            {{ form.address2 }}
-                                        </div>
+                                  
+                                    <!--Grid row-->
+                                    <div class="row mb-5">
+                                  
+                                      <!--Grid column-->
+                                      <div class="col-lg-6 col-md-12 mb-6">
+                                        <label for="country">Country</label>
+                                        {{ form.country }}
+                                      </div>
+                                      <!--Grid column-->
+                                  
+                                      <!--Grid column-->
+                                      <div class="col-lg-6 col-md-12 mb-6">
+                                        <label for="country">City</label>
+                                        {{ form.city }}
+                                      </div>
+                                      
+                                      <!--Grid column-->
+                                  
                                     </div>
-
+                                    <!--Grid row-->
+                                  
+                                    <!--Phone and Email-->
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="{{ form.city.id_for_label }}">City:</label>
-                                            {{ form.city }}
+                                  
+                                      <!--Grid column-->
+                                      <div class="col-lg-6 col-md-12 mb-6">
+                                        <label for="customer_phone">Phone</label>
+                                        {{ form.phone }}
+                                      </div>
+                                      <!--Grid column-->
+                                  
+                                      <!--Grid column-->
+                                      <div class="col-lg-6 col-md-12 mb-6">
+                                  
+                                        <label for="zip">Zip</label>
+                                        {{ form.zipcode }}
+                                        <div class="invalid-feedback">
+                                          Zip code required.
                                         </div>
+                                  
+                                      </div>
+                                      <!--Grid column-->
+                                  
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="{{ form.state.id_for_label }}">State:</label>
-                                            {{ form.state }}
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="{{ form.zipcode.id_for_label }}">Zipcode:</label>
-                                            {{ form.zipcode }}
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="{{ form.country.id_for_label }}">Country:</label>
-                                            {{ form.country }}
-                                        </div>
-                                    </div>
-
                                     <br /><br />
-                                    <button type="submit" class="btn btn-secondary"  style="background-color: #007bff;">
+                                    <button type="submit" class="btn btn-secondary" style="background-color: #007bff;">
                                         Update Profile
                                     </button>
-                                </form>
+                                  </form>
 
 
                             </div>
@@ -211,4 +218,3 @@
 
 
 {% endblock %}
-
