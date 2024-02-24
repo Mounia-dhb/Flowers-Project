@@ -6,9 +6,13 @@ from store.models import Order, Customer, CheckoutAddress
 from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse
-from store.forms import CheckoutForm
+# from store.forms import CheckoutForm
 from django.views.generic import View
 import paypalrestsdk
+from store.forms import UserInfoForm,UpdateUserForm,CheckoutForm
+from store.models import Profile
+
+
 
 
 
@@ -18,21 +22,44 @@ paypalrestsdk.configure({
     "client_secret": "EGT-bKpJVTRUXRwlelt9DliPepT_woefIlHS01J8RxI8JoU9rysd65A9AP1tVCWX4vggfQFHPACkLe48", # Updated
 })
 
-def checkout_summary(request):
-    # Get checkout form
-    form = CheckoutForm()
-    # Get the cart
+# def checkout_summary(request):
+#     # Get checkout form
+#     form = UserInfoForm()
+#     # Get the cart
+#     cart = Cart(request)
+#     cart_products = cart.get_prods
+#     quantities = cart.get_quants
+#     totals = cart.cart_total()
+#     context = {
+#         "form": form,
+#         "totals":totals,
+# 		"quantities":quantities, 
+#         "cart_products":cart_products
+#     }
+#     return render(request, 'checkout.html', context)
+
+
+def checkout_summary(request): 
     cart = Cart(request)
     cart_products = cart.get_prods
     quantities = cart.get_quants
     totals = cart.cart_total()
+
+    current_user = Profile.objects.get(user=request.user)
+    user_form = UpdateUserForm(request.POST or None, instance=current_user.user)
+    form = UserInfoForm(request.POST or None, instance=request.user.profile)
+    checkout_form = CheckoutForm(request.POST or None)
+   
     context = {
         "form": form,
-        "totals":totals,
-		"quantities":quantities, 
-        "cart_products":cart_products
+        "user_form": user_form,
+        "checkout_form": checkout_form,
+        "totals": totals,
+        "quantities": quantities, 
+        "cart_products": cart_products
     }
-    return render(request, 'checkout.html', context)   
+    return render(request, 'checkout.html', context)
+
 
 
 def create_payment(request): 

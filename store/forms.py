@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm, PasswordChangeForm
 from django import forms
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 from .models import Profile
-
 
 class UserInfoForm(forms.ModelForm):
 	phone = forms.CharField(label="", widget=forms.TextInput(attrs={
@@ -23,9 +22,9 @@ class UserInfoForm(forms.ModelForm):
 		'class':'form-control', 
 		'placeholder':'City'}), required=False)
 	
-	state = forms.CharField(label="", widget=forms.TextInput(attrs={
-		'class':'form-control', 
-		'placeholder':'State'}), required=False)
+	# state = forms.CharField(label="", widget=forms.TextInput(attrs={
+	# 	'class':'form-control', 
+	# 	'placeholder':'State'}), required=False)
 	
 	zipcode = forms.CharField(label="", widget=forms.TextInput(attrs={
 		'class':'form-control', 
@@ -34,17 +33,15 @@ class UserInfoForm(forms.ModelForm):
 	country = forms.CharField(label="", widget=forms.TextInput(attrs={
 		'class':'form-control', 
 		'placeholder':'Country'}), required=False)
+
+	
 	
 
 	class Meta:
 		model = Profile
-		fields = ('phone', 'address1', 'address2', 'city', 'state', 'zipcode', 'country', )
+		fields = ('phone', 'address1', 'address2', 'city',  'zipcode', 'country', )#'state',
 
 
-
-from django import forms
-from django.contrib.auth.forms import SetPasswordForm, PasswordChangeForm
-from django.contrib.auth.models import User
 
 class ChangePasswordForm(PasswordChangeForm):
     old_password = forms.CharField(
@@ -127,38 +124,7 @@ PAYMENT = (
 )
 
 class CheckoutForm(forms.Form):
-    customer_firstname = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Your firstname'
-    }))
-    customer_lastname = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Your lastname'
-    }))
-	
     
-    street_address = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': '1234 Main St'
-    }))
-    apartment_address = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Apartment or suite'
-    }))
-    country = CountryField(blank_label='(select country)').formfield(widget=CountrySelectWidget(attrs={
-        'class': 'form-control custom-select d-block w-100'
-    }))
-    zip = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control'
-    }))
-    customer_phone = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': '+212xxxxxxxxx'
-    }))
-    customer_email = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'example@examole.com'
-    }))
     same_billing_address = forms.BooleanField(required=False)
     save_info = forms.BooleanField(required=False)
     payment_option = forms.ChoiceField(
