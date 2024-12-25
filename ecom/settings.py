@@ -7,7 +7,8 @@ from django_countries.widgets import CountrySelectWidget
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 CountrySelectWidget.get_choices = lambda self: self._choices
-CountrySelectWidget.choices = property(CountrySelectWidget.get_choices, CountrySelectWidget.set_choices)
+CountrySelectWidget.choices = property(CountrySelectWidget.get_choices)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
