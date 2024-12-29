@@ -102,9 +102,29 @@ def product(request,pk):
 	product = Product.objects.get(id=pk)
 	return render(request, 'product.html', {'product':product})
 
+from django.shortcuts import render
+
 def home(request):
-	products = Product.objects.all()
-	return render(request, 'home.html', {'products':products})
+    products = [
+        {"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
+        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
+        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
+        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
+		{"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
+        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
+        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
+        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
+		{"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
+        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
+        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
+        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
+		{"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
+        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
+        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
+        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
+    ]
+    return render(request, 'home.html', {'products': products})
+
 
 
 def about(request):

@@ -10853,3 +10853,198 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+/* Hero Section Styling */
+.hero {
+  background-image: url('/static/assets/hero-flowers.png'); /* Ensure this path is correct */
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #ff6f61; /* Vibrant flower-like color */
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e65b4f; /* Slightly darker hover effect */
+}
+
+/* Carousel Styling */
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.carousel-caption h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+.carousel-caption p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.carousel-inner img {
+  max-height: 400px; /* Adjust the height to your preference */
+  object-fit: cover; /* Ensures the image is cropped instead of stretched */
+  width: 100%; /* Ensure the image takes the full width */
+}
+.carousel-inner img {
+  object-position: center; /* Centers the image in the frame */
+}
+
+.carousel {
+  max-height: 500px; /* Matches the image height */
+  overflow: hidden; /* Prevents content from exceeding the height */
+}
+
+.carousel {
+  margin-bottom: 50px;
+}
+
+/* Product Grid Section Styling */
+#products {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+}
+
+/* General Button Styling */
+.btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #ff6f61;
+  border: none;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+
+.btn-primary:hover {
+  background-color: #e65b4f;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
+/* Navbar Styling */
+.navbar {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+}
+
+.nav-link {
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff6f61;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ff6f61;
+}
+
+/* Card Styling */
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Footer Styling */
+footer {
+  font-size: 0.9rem;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ff6f61;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #e65b4f;
+}
+
+/* Heading Styling */
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #555;
+}
+
+
