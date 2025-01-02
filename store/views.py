@@ -105,6 +105,12 @@ def product(request,pk):
 from django.shortcuts import render
 
 def home(request):
+    context = {
+        'bouquet_range': range(1, 17)
+    }
+    return render(request, 'home.html', context)
+
+def home(request):
     products = [
         {"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
         {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
