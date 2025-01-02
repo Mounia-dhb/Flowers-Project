@@ -110,24 +110,25 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+from django.shortcuts import render
 def home(request):
     products = [
-        {"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
-        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
-        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
-        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
-		{"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
-        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
-        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
-        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
-		{"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
-        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
-        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
-        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
-		{"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "/static/assets/red_roses.jpg"},
-        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "/static/assets/sunflowers.jpg"},
-        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "/static/assets/pink_tulips.jpg"},
-        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "/static/assets/orchids.jpg"},
+        {"id": 1, "name": "Red Roses", "price": 25.99, "image_url": "static/assets/bouquet1.png"},
+        {"id": 2, "name": "Sunflowers", "price": 18.99, "image_url": "static/assets/bouquet2.png"},
+        {"id": 3, "name": "Pink Tulips", "price": 22.99, "image_url": "static/assets/bouquet3.png"},
+        {"id": 4, "name": "Orchids", "price": 29.99, "image_url": "static/assets/bouquet4.png"},
+        {"id": 5, "name": "Lavender Dreams", "price": 29.99, "image_url": "static/assets/bouquet5.png"},
+        {"id": 6, "name": "Spring Bliss", "price": 21.99, "image_url": "static/assets/bouquet6.png"},
+        {"id": 7, "name": "Floral Elegance", "price": 23.99, "image_url": "static/assets/bouquet7.png"},
+        {"id": 8, "name": "Classic Red", "price": 20.99, "image_url": "static/assets/bouquet8.png"},
+        {"id": 9, "name": "Ocean Blue", "price": 26.99, "image_url": "static/assets/bouquet9.png"},
+        {"id": 10, "name": "Peach Paradise", "price": 28.99, "image_url": "static/assets/bouquet10.png"},
+        {"id": 11, "name": "Pure White", "price": 24.99, "image_url": "static/assets/bouquet11.png"},
+        {"id": 12, "name": "Blush Pink", "price": 22.99, "image_url": "static/assets/bouquet12.png"},
+        {"id": 13, "name": "Romantic Charm", "price": 27.99, "image_url": "static/assets/bouquet13.png"},
+        {"id": 14, "name": "Pastel Delight", "price": 21.99, "image_url": "static/assets/bouquet14.png"},
+        {"id": 15, "name": "Springtime Bliss", "price": 29.99, "image_url": "static/assets/bouquet15.png"},
+        {"id": 16, "name": "Vintage Elegance", "price": 30.99, "image_url": "static/assets/bouquet16.png"},
     ]
     return render(request, 'home.html', {'products': products})
 
