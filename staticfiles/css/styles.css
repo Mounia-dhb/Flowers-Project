@@ -11006,10 +11006,11 @@ textarea.form-control-lg {
 }
 
 .card-img-top {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  max-height: 200px;
-  object-fit: cover;
+  object-fit: contain !important; /* Ensure the entire image fits inside */
+  height: 250px !important;      /* Adjust height as needed */
+  width: 100% !important;        /* Full width */
+  border-radius: 8px !important; /* Optional rounded corners */
+  background-color: #f8f8f8;     /* Optional: add a background color for empty space */
 }
 
 .card-title {
