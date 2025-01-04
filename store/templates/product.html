@@ -9,7 +9,7 @@
         <div class="row g-0">
             <div class="col-md-4">
                 <!-- Product Image -->
-                <img src="{{ product.image_url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+                <img src="{% static product.image_url %}" class="img-fluid rounded-start" alt="{{ product.name }}">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -18,7 +18,7 @@
                         <h1 class="card-title">{{ product.name }}</h1>
                         <br/>
                         <!-- Product Description -->
-                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text justified">{{ product.description|linebreaks }}</p>
                         <br/>
                         <!-- Product Price -->
                         <p class="card-text"><strong>Price:</strong> {{ product.price }}</p>
@@ -40,8 +40,8 @@
                         <br/><br/>
                         
                         <!-- Buttons -->
-                        <a href="{% url 'home' %}" class="btn btn-secondary" style="background-color: #007bff;">Back to Shopping</a>
-                        <button type="button" value="{{ product.id }}" class="btn btn-secondary" style="background-color: #007bff;" id="add-cart">Add To Cart</button>
+                        <a href="{% url 'home' %}" class="btn btn-secondary" style="background-color: #ff6f61;">Back to Shopping</a>
+                        <button type="button" value="{{ product.id }}" class="btn btn-secondary" style="background-color: #ff6f61;" id="add-cart">Add To Cart</button>
                     </center>
                 </div>
             </div>
@@ -49,30 +49,39 @@
     </div>
 </div>
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/>
 
 <script>
-    // Add to Cart Functionality
     $(document).on('click', '#add-cart', function(e) {
         e.preventDefault();
+        const productId = $(this).val();  // Get product ID from the button's value
+        const quantity = $('#qty-cart').val();  // Get selected quantity
+
         $.ajax({
             type: 'POST',
-            url: "{% url 'cart_add' %}",
+            url: `/cart/add/${productId}/`,  // URL matches the `urls.py` definition
             data: {
-                product_id: $('#add-cart').val(),
-                product_qty: $('#qty-cart option:selected').text(),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                action: 'post'
+                product_qty: quantity,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
             },
-            success: function(json) {
-                document.getElementById("cart_quantity").textContent = json.qty;
-                location.reload();
+            success: function(response) {
+                if (response.success) {
+                    alert('Product added to cart successfully!');
+                    // Update cart quantity in the navbar
+                    document.getElementById("cart_quantity").textContent = response.qty;
+                } else {
+                    alert('Failed to add product to cart!');
+                }
             },
             error: function(xhr, errmsg, err) {
                 console.error("Error adding to cart: ", errmsg);
+                alert('An error occurred. Please try again.');
             }
         });
     });
 </script>
+
+
+
 
 {% endblock %}
