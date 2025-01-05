@@ -40,6 +40,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
+                <!-- Cart Button -->
+                <li class="nav-item">
+                    <a class="btn btn-outline-success position-relative" href="{% url 'cart_summary' %}">
+                        <i class="bi bi-cart"></i> Cart
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">
+                            {% with request.session.cart|length as cart_count %}
+                                {{ cart_count|default:"0" }}
+                            {% endwith %}
+                        </span>
+                    </a>
+                </li>
             </ul>
             <form class="d-flex ms-3">
                 <input

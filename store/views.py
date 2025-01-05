@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product, Category, Profile
+from .models import Product, Category, Profile, Cart
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -364,31 +364,32 @@ from django.http import JsonResponse
 
 def cart_add(request, product_id):
     if request.method == 'POST':
-        quantity = request.POST.get('product_qty')
-
-        # Simulate adding to cart (or implement your logic)
+        product_qty = int(request.POST.get('product_qty', 1))
         cart = request.session.get('cart', {})
-        cart[product_id] = quantity
+        cart[product_id] = cart.get(product_id, 0) + product_qty
         request.session['cart'] = cart
 
-        # Respond with success and updated cart quantity
-        return JsonResponse({'success': True, 'qty': sum(map(int, cart.values()))})
-
-    return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
+        # Return success and cart count
+        return JsonResponse({
+            'success': True,
+            'cart_count': sum(cart.values())
+        })
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
 
 from django.shortcuts import render
 
 def cart_summary(request):
     cart = request.session.get('cart', {})
-    products = []
-    total = 0
-
-    # Assume `Product` is your model for products
-    for product_id, qty in cart.items():
+    cart_items = []
+    for product_id, details in cart.items():
         product = Product.objects.get(id=product_id)
-        total += product.price * int(qty)
-        products.append({'product': product, 'quantity': qty})
+        total_price = product.price * details['quantity']
+        cart_items.append({
+            'product': product,
+            'quantity': details['quantity'],
+            'total_price': total_price,
+        })
+    return render(request, 'cart_summary.html', {'cart_items': cart_items})
 
-    return render(request, 'cart_summary.html', {'products': products, 'total': total})
 

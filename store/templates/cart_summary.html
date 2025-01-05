@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load custom_filters %} <!-- Load the custom filter -->
 
 {% block content %}
 <div class="container">
-    <h1>Cart Summary</h1>
+    <h1>Your Cart</h1>
     <table class="table">
         <thead>
             <tr>
@@ -13,22 +14,15 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in products %}
+            {% for item in cart_items %}
             <tr>
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.quantity }}</td>
-                <td>${{ item.product.price }}</td>
-                <td>${{ item.product.price|floatformat:2|add:item.quantity }}</td>
+                <td>{{ item.product.price }}</td>
+                <td>{{ item.quantity|multiply:item.product.price }}</td> <!-- Use the custom filter -->
             </tr>
             {% endfor %}
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">Total</td>
-                <td>${{ total|floatformat:2 }}</td>
-            </tr>
-        </tfoot>
     </table>
-    <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
 </div>
 {% endblock %}
