@@ -9,7 +9,7 @@
         <div class="row g-0">
             <div class="col-md-4">
                 <!-- Product Image -->
-                <img src="{% static product.image_url %}" class="img-fluid rounded-start" alt="{{ product.name }}">
+                <img src="{{ product.image }}" class="img-fluid rounded-start" alt="{{ product.name }}">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -21,7 +21,7 @@
                         <p class="card-text justified">{{ product.description|linebreaks }}</p>
                         <br/>
                         <!-- Product Price -->
-                        <p class="card-text"><strong>Price:</strong> {{ product.price }}</p>
+                        <p class="card-text"><strong>Price:</strong> {{ product.price }} MAD</p>
                         <br/>
 
                         <!-- Quantity Selector -->
@@ -40,7 +40,7 @@
                         <br/><br/>
                         
                         <!-- Buttons -->
-                        <a href="{% url 'home' %}" class="btn btn-secondary" style="background-color: #ff6f61;">Back to Shopping</a>
+                        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Shopping</a>
                         <button type="button" value="{{ product.id }}" class="btn btn-secondary" style="background-color: #ff6f61;" id="add-cart">Add To Cart</button>
                     </center>
                 </div>
@@ -52,32 +52,27 @@
 <br/><br/>
 
 <script>
-    $(document).on('click', '#add-cart', function(e) {
+    $(document).on('click', '#add-cart', function(e){
         e.preventDefault();
-        const productId = $(this).val();  // Get product ID from the button's value
-        const quantity = $('#qty-cart').val();  // Get selected quantity
-
         $.ajax({
             type: 'POST',
-            url: `/cart/add/${productId}/`,  // URL matches the `urls.py` definition
+            url: "{% url 'cart_add' %}",
             data: {
-                product_qty: quantity,
-                csrfmiddlewaretoken: '{{ csrf_token }}'
+                product_id: $('#add-cart').val(),
+                product_qty: $('#qty-cart option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
             },
-            success: function(response) {
-                if (response.success) {
-                    alert('Product added to cart successfully!');
-                    // Update cart quantity in the navbar
-                    document.getElementById("cart_quantity").textContent = response.qty;
-                } else {
-                    alert('Failed to add product to cart!');
-                }
+
+            success: function(json){
+                //console.log(json)
+                document.getElementById("cart_quantity").textContent = json.qty
+                location.reload();
             },
-            error: function(xhr, errmsg, err) {
-                console.error("Error adding to cart: ", errmsg);
-                alert('An error occurred. Please try again.');
-            }
-        });
+
+            error: function(xhr, errmsg, err){}
+
+        })
     });
 </script>
 
