@@ -3,24 +3,14 @@
 
 {% block content %}
 
-        <!-- Header-->
-        <header class="py-5 bg-secondary">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder text-black">Shopping Cart</h1>
-                    <p class="lead fw-normal text-black-50 mb-0">View Your Cart...</p>
-                </div>
-            </div>
-        </header>
-        <br/>
-        <div class="container">
+<div class="container">
         {% if cart_products %}
         	{% for product in cart_products %}
         	
-<div class="card mb-3">
+<div class="card mb-3 bg-light">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
+      <img src="{{ product.image }}" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -38,16 +28,15 @@
 
                 <!-- Product price-->
                 <strike>
-                ${{ product.price }}
+                {{ product.price }} MAD
                 </strike>
                 &nbsp;
-                ${{ product.sale_price }}
+                {{ product.sale_price }} MAD
 
 
 
         {% else %}
-            ${{ product.price }}
-            
+          {{ product.price }} MAD
         {% endif %}
             <br/><br/>
         <div class="row justify-content-center">
@@ -71,8 +60,8 @@
                 </div>
             </div>
             <br/><br/>
-        <a href="{% url 'home'%}" class="btn btn-secondary" style="background-color: #007bff;">Back to Shopping</a>
-        <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart" style="background-color: #007bff;">Update</button>
+        <a href="{% url 'home'%}" class="btn btn-secondary">Back to Shopping</a>
+        <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart" style="background-color: #ff6f61;">Update</button>
         <button type="button" data-index="{{product.id}}" class="btn btn-danger delete-product" >Remove</button>
         
     </center>
@@ -84,8 +73,8 @@
 
 
         	{% endfor %}
-            <h3>Total: ${{ totals }}</h3>
-            <a href="/checkout" class="btn btn-secondary" style="background-color: #007bff; float: right;">Continue to checkout</a>
+            <h3>Total: {{ totals }} MAD</h3>
+            <a href="/checkout" class="btn btn-secondary" style="background-color: #ff6f61; float: right;">Continue to checkout</a>
 
             <br/><br/><br/>
         	{% else %}

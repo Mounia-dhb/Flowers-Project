@@ -101,10 +101,9 @@
             </div>
 
             <input type="hidden" value="{{totals}}" name="total_cmd">
-            <button class="btn btn-secondary" style="background-color: #007bff; float: right;" type="submit">Continue to
+            <button class="btn btn-secondary" style="background-color: #ff6f61; float: right;" type="submit">Continue to
               Payment</button>
-            <a href="{% url 'cart_summary' %}" class="btn btn-secondary"
-              style="background-color: #007bff; float: left;">Go Back</a>
+            <a href="{% url 'cart_summary' %}" class="btn btn-secondary" style="float: left;">Go Back</a>
 
           </form>
 
@@ -134,7 +133,7 @@
               {% endfor %}
               <!-- <small class="text-muted">{{item.description}}</small> -->
             </div>
-            <span class="text-muted">${{product.price}}</span>
+            <span class="text-muted">{{product.price}} MAD</span>
           </li>
           {% endfor %}
           <!-- <li class="list-group-item d-flex justify-content-between bg-light">
@@ -145,8 +144,8 @@
               <span class="text-success">-$5</span>
             </li> -->
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>${{totals}}</strong>
+            <span>Total (MAD)</span>
+            <strong>{{totals}} MAD</strong>
           </li>
         </ul>
         <!-- Cart -->
